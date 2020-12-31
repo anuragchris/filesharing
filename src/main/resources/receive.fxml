@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="216.0" prefWidth="385.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="5.0" layoutY="25.0" prefHeight="37.0" prefWidth="180.0" text=" File receiving : ">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <ProgressBar layoutX="104.0" layoutY="115.0" prefHeight="18.0" prefWidth="266.0" progress="0.0" />
+      <Label layoutX="14.0" layoutY="110.0" prefHeight="17.0" prefWidth="72.0" text="Status :">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="fileReceiving" layoutX="118.0" layoutY="25.0" prefHeight="37.0" prefWidth="180.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="110.0" layoutY="159.0" prefHeight="37.0" prefWidth="181.0" />
+   </children>
+</AnchorPane>

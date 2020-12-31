@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="416.0" prefWidth="333.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shareme.filesharing.controller">
+   <children>
+      <MenuBar focusTraversable="false" layoutX="-1.0" prefHeight="27.0" prefWidth="413.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="1.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#stloc" text="Set Default Location" />
+                  <MenuItem mnemonicParsing="false" onAction="#exitapplication" text="Exit" />
+               </items>
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="19.0" focusTraversable="true" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@mnicon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+          </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#abt" text="About Share Me" />
+                  <MenuItem mnemonicParsing="false" text="How To" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
+      <Button layoutX="66.0" layoutY="347.0" mnemonicParsing="false" onAction="#setport" prefHeight="34.0" prefWidth="223.0" text="Port" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="44.0" />
+      <Button layoutX="66.0" layoutY="296.0" mnemonicParsing="false" onAction="#sendview" prefHeight="34.0" prefWidth="223.0" text="Send" AnchorPane.leftAnchor="66.0" AnchorPane.rightAnchor="44.0" />
+      <ImageView fitHeight="205.0" fitWidth="205.0" layoutX="64.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="64.0">
+         <image>
+            <Image url="@mainlogo.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="checkportset" layoutX="68.0" layoutY="256.0" prefHeight="34.0" prefWidth="216.0" />
+   </children>
+</AnchorPane>

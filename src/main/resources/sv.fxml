@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="281.0" prefWidth="494.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shareme.filesharing.controller">
+   <children>
+      <Label layoutX="21.0" layoutY="51.0" prefHeight="28.0" prefWidth="78.0" text="Select File :" textFill="#614646" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="280.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="slb" layoutX="106.0" layoutY="53.0" prefHeight="25.0" prefWidth="245.0" AnchorPane.leftAnchor="106.0" AnchorPane.rightAnchor="143.0" />
+      <Button fx:id="snbr" layoutX="375.0" layoutY="53.0" mnemonicParsing="false" onAction="#brs" prefHeight="25.0" prefWidth="103.0" text="Browse" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="16.0" />
+      <ProgressBar layoutX="106.0" layoutY="218.0" prefHeight="18.0" prefWidth="366.0" progress="0.0" />
+      <Label layoutX="21.0" layoutY="215.0" prefHeight="17.0" prefWidth="84.0" text="Status">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="filesSelected" layoutX="21.0" layoutY="95.0" prefHeight="28.0" prefWidth="85.0" textFill="#614646" AnchorPane.leftAnchor="21.0" AnchorPane.rightAnchor="280.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="117.0" layoutY="145.0" mnemonicParsing="false" onAction="#sendfile" prefHeight="25.0" prefWidth="223.0" text="Send" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="154.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
