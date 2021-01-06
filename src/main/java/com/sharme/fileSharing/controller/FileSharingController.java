@@ -97,7 +97,7 @@ public class FileSharingController {
 							e.printStackTrace();
 						}
 						latch.countDown();
-		    		a++;
+		    		a--;
 					
 				}
 			});
