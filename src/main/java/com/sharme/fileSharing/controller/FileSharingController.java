@@ -26,12 +26,6 @@ import com.shareme.filesharing.controller;
 import com.shareme.filesharing.service.FileProcessing;
 
 import javafx.application.Platform;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 @Controller
 public class FileSharingController {
@@ -75,50 +69,49 @@ public class FileSharingController {
     }
 
     private static final int PORT = 9999;
-    static int a=0;
-    static boolean check=false;
+    static int a = 0;
+    static boolean check = false;
+
     @PostMapping("/receive/bigfile")
     public ResponseEntity<String> receiveBigFile(@RequestBody FileProperties fileProp) {
 	// file to byte[], Path
-    	System.out.println("hi");
+	System.out.println("hi");
 	try {
-        if(a==0)
-        {
-        	final CountDownLatch latch = new CountDownLatch(1);
-        	Platform.runLater(new Runnable(){
-				
-				@Override
-				public void run() {
-					controller popwindow=new controller();
-						try {
-							check=popwindow.alertwindow();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						latch.countDown();
-		    		a--;
-					
-				}
-			});
-        	
-        	 try {
-        	      latch.await();
-        	    } catch (InterruptedException e) {
-        	      Platform.exit();
-        	    }
-        	
-        }
-        
-      if(check) {
-	    FileProcessing processFile = new FileProcessing();
-	    processFile.processBigFile(fileProp, "");
-	    return new ResponseEntity<String>(HttpStatus.ACCEPTED);
-      }
-      else {
-    	  return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
-      }
-      } catch (Exception e) {
+	    if (a == 0) {
+		final CountDownLatch latch = new CountDownLatch(1);
+		Platform.runLater(new Runnable() {
+
+		    @Override
+		    public void run() {
+			controller popwindow = new controller();
+			try {
+			    check = popwindow.alertwindow();
+			} catch (IOException e) {
+			    // TODO Auto-generated catch block
+			    e.printStackTrace();
+			}
+			latch.countDown();
+			a++;
+
+		    }
+		});
+
+		try {
+		    latch.await();
+		} catch (InterruptedException e) {
+		    Platform.exit();
+		}
+
+	    }
+
+	    if (check) {
+		FileProcessing processFile = new FileProcessing();
+		processFile.processBigFile(fileProp, "");
+		return new ResponseEntity<String>(HttpStatus.ACCEPTED);
+	    } else {
+		return new ResponseEntity<String>(HttpStatus.NOT_ACCEPTABLE);
+	    }
+	} catch (Exception e) {
 	    return new ResponseEntity<String>("Text File transfer failed ! ->" + e.getMessage(),
 		    HttpStatus.BAD_REQUEST);
 	}
