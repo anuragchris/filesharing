@@ -10,7 +10,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.shareme.fileShare.model.FileProperties;
 import com.shareme.fileShare.model.SendFileDetails;
-import com.shareme.filesharing.controller;
 import com.shareme.filesharing.service.FileProcessing;
-
-import javafx.application.Platform;
 
 @Controller
 public class FileSharingController {
@@ -70,39 +66,39 @@ public class FileSharingController {
 
     private static final int PORT = 9999;
     static int a = 0;
-    static boolean check = false;
+    static boolean check = true;
 
     @PostMapping("/receive/bigfile")
     public ResponseEntity<String> receiveBigFile(@RequestBody FileProperties fileProp) {
 	// file to byte[], Path
 	System.out.println("hi");
 	try {
-	    if (a == 0) {
-		final CountDownLatch latch = new CountDownLatch(1);
-		Platform.runLater(new Runnable() {
-
-		    @Override
-		    public void run() {
-			controller popwindow = new controller();
-			try {
-			    check = popwindow.alertwindow();
-			} catch (IOException e) {
-			    // TODO Auto-generated catch block
-			    e.printStackTrace();
-			}
-			latch.countDown();
-			a++;
-
-		    }
-		});
-
-		try {
-		    latch.await();
-		} catch (InterruptedException e) {
-		    Platform.exit();
-		}
-
-	    }
+	    // if (a == 0) {
+	    // final CountDownLatch latch = new CountDownLatch(1);
+	    // Platform.runLater(new Runnable() {
+	    //
+	    // @Override
+	    // public void run() {
+	    // controller popwindow = new controller();
+	    // try {
+	    // check = popwindow.alertwindow();
+	    // } catch (IOException e) {
+	    // // TODO Auto-generated catch block
+	    // e.printStackTrace();
+	    // }
+	    // latch.countDown();
+	    // a++;
+	    //
+	    // }
+	    // });
+	    //
+	    // try {
+	    // latch.await();
+	    // } catch (InterruptedException e) {
+	    // Platform.exit();
+	    // }
+	    //
+	    // }
 
 	    if (check) {
 		FileProcessing processFile = new FileProcessing();

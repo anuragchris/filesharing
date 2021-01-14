@@ -7,6 +7,7 @@ import java.nio.channels.SocketChannel;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicLong;
 
 final class FileWriter {
 
@@ -20,12 +21,19 @@ final class FileWriter {
 	this.channel = FileChannel.open(Paths.get(path), StandardOpenOption.WRITE, StandardOpenOption.CREATE_NEW);
     }
 
-    void transfer(final SocketChannel channel, final long bytes) throws IOException {
+    void transfer(final SocketChannel channel, final long bytes, String fileName) throws IOException {
 	assert !Objects.isNull(channel);
 
-	long position = 0l;
-	while (position < bytes) {
-	    position += this.channel.transferFrom(channel, position, Constants.TRANSFER_MAX_SIZE);
+	// long position = 0l;
+	AtomicLong pos = new AtomicLong(0l);
+	ReceivingFileData data = new ReceivingFileData(pos, bytes);
+	Test test = new Test(data);
+	Thread thread = new Thread(test);
+	thread.start();
+	while (pos.get() < bytes) {
+	    pos.addAndGet(this.channel.transferFrom(channel, pos.get(), Constants.TRANSFER_MAX_SIZE));
+
+	    // System.out.println(position / (1024 * 1024));
 	}
     }
 
@@ -35,6 +43,9 @@ final class FileWriter {
 	int bytesWritten = 0;
 	while (buffer.hasRemaining()) {
 	    bytesWritten += this.channel.write(buffer, position + bytesWritten);
+	    // long size = position + bytesWritten;
+	    // System.out.println(size);
+
 	}
 
 	return bytesWritten;

@@ -11,7 +11,6 @@ import com.google.common.base.Strings;
 import com.google.common.net.InetAddresses;
 import com.shareme.fileShare.model.SendFileDetails;
 import com.shareme.filesharing.service.FileProcessing;
-import com.sun.glass.ui.MenuItem;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,7 +36,7 @@ public class controller {
     private Label label;
 
     private static SendFileDetails fileDetails = new SendFileDetails();
-    //private static controller setdetails=new controller();
+    // private static controller setdetails=new controller();
 
     @FXML
     public void sendview(ActionEvent event) throws IOException {
@@ -48,7 +47,7 @@ public class controller {
 	primaryStage1.getIcons().add(img);
 	primaryStage1.setTitle("Send");
 	primaryStage1.setScene(scene1);
-	primaryStage1.initModality(Modality.APPLICATION_MODAL); 
+	primaryStage1.initModality(Modality.APPLICATION_MODAL);
 	primaryStage1.show();
 
     }
@@ -88,10 +87,10 @@ public class controller {
 
     @FXML
     private Label pvlb;
-    
+
     @FXML
     private Button set;
-    
+
     @FXML
     public void setptlb(ActionEvent et) throws IOException {
 	String port = userport.getText();
@@ -101,15 +100,14 @@ public class controller {
 	    // SendFileDetails ip = new SendFileDetails();
 	    // ip.setRemoteMachineAddress(port);
 	    fileDetails.setRemoteMachineAddress(port);
-	   // setdetails.setportcheck();
+	    // setdetails.setportcheck();
 	    System.out.println(port);
-	   // set.setCancelButton(true);
+	    // set.setCancelButton(true);
 	} else {
 	    pvlb.setText("Enter a valid IP Address");
 	    System.out.println("Enter a valid IP Address");
 	}
     }
-    
 
     static boolean validIP(String port) throws IllegalArgumentException {
 	if (Strings.isNullOrEmpty(port)) {
@@ -135,7 +133,8 @@ public class controller {
 	Stage primaryStage = new Stage();
 	primaryStage.setTitle("Set Default Location");
 	DirectoryChooser directoryChooser = new DirectoryChooser();
-	directoryChooser.setInitialDirectory(new File("C:\\Users\\anujg\\Downloads"));
+	// directoryChooser.setInitialDirectory(new
+	// File("C:\\Users\\anujg\\Downloads"));
 	File selectedDirectory = directoryChooser.showDialog(primaryStage);
 	String directory = selectedDirectory.getAbsolutePath();
 	System.out.println(directory);
@@ -225,33 +224,27 @@ public class controller {
 	fileProcessing.bigFile(fileDetails.getFileDetails(), fileDetails.getRemoteMachineAddress());
 	et.consume();
     }
-    
-    
+
     @FXML
-    public void exitapplication(ActionEvent et)
-    {
-    	System.exit(0);
+    public void exitapplication(ActionEvent et) {
+	System.exit(0);
     }
-    
+
     @FXML
-    public boolean alertwindow()throws IOException
-    {
-    	Alert alert=new Alert(Alert.AlertType.CONFIRMATION);
-    	alert.setTitle("Notification");
-    	alert.setContentText("Do you want to accept the files?");
-    	alert.setHeaderText(null);
-    	alert.initModality(Modality.APPLICATION_MODAL);
-    	Optional<ButtonType> result=alert.showAndWait();
-    	if(result.get()==ButtonType.OK)
-    	{
-    		controller ob=new controller();
-    		ob.recieveview();
-    		return true;
-    	}
-    	else return false;
-    	
+    public boolean alertwindow() throws IOException {
+	Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+	alert.setTitle("Notification");
+	alert.setContentText("Do you want to accept the files?");
+	alert.setHeaderText(null);
+	alert.initModality(Modality.APPLICATION_MODAL);
+	Optional<ButtonType> result = alert.showAndWait();
+	if (result.get() == ButtonType.OK) {
+	    controller ob = new controller();
+	    ob.recieveview();
+	    return true;
+	} else
+	    return false;
+
     }
-    
-   
 
 }

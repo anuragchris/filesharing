@@ -72,7 +72,7 @@ public class FileProcessing {
 	    @Override
 	    public void run() {
 		try {
-		    receiver.receive();
+		    receiver.receive(fileProp.getFileName());
 		} catch (IOException e) {
 
 		} finally {
