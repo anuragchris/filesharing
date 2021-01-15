@@ -26,7 +26,7 @@ final class FileWriter {
 
 	// long position = 0l;
 	AtomicLong pos = new AtomicLong(0l);
-	ReceivingFileData data = new ReceivingFileData(pos, bytes);
+	ReceivingFileData data = new ReceivingFileData(pos, bytes, fileName);
 	Test test = new Test(data);
 	Thread thread = new Thread(test);
 	thread.start();
